@@ -38,7 +38,5 @@ public class Driver {
             }
 
         } while (!input.equalsIgnoreCase("DONE"));
-
     }
-
 }

@@ -8,6 +8,11 @@ public class LocalDB implements Database {
     private HashMap<User, HashSet<Account>> accounts;
     private HashMap<String, User> users;
 
+    LocalDB() {
+        this.accounts = new HashMap<>();
+        this.users = new HashMap<>();
+    }
+
     @Override
     public void createAccount(String username, double initialBalance) throws UserExistsException {
 
@@ -29,10 +34,6 @@ public class LocalDB implements Database {
         accounts.put(user, userAccounts);
     }
 
-    @Override
-    public void createUser(String username, User user) {
-
-    }
 
     @Override
     public void modifyAccount(User user, Account account) {
@@ -41,11 +42,18 @@ public class LocalDB implements Database {
 
     @Override
     public User getUser(String username) throws NoSuchUserException {
-        return null;
+        User user = users.get(username);
+
+        if (user == null) {
+            throw new NoSuchUserException("No user by the name " + username + " exists.");
+        }
+
+        return user;
     }
 
     @Override
     public String[] getUsers() {
-        return new String[0];
+        return users.keySet().toArray(new String[0]);
     }
+
 }

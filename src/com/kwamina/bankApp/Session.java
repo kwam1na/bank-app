@@ -79,7 +79,6 @@ public class Session {
 
     public static void processCommand(Command command, String[] tokens, BankSystem bank) {
 
-//        Utility.print("Command in: " + command);
         switch (command) {
 
             case CREATE_ACCOUNT:
@@ -101,7 +100,6 @@ public class Session {
             case WITHDRAW:
                 handleWithdraw(tokens, bank);
                 break;
-
 
             case TRANSFER:
                 handleTransfer(tokens, bank);
@@ -144,10 +142,8 @@ public class Session {
 
         } catch (NumberFormatException e) {
             Utility.displayMessage("ERROR", "Initial balance must be a non-negative number greater than 0");
-            return;
         } catch (UserExistsException e) {
             Utility.displayMessage("ERROR", e.getMessage());
-            return;
         }
     }
 
@@ -215,7 +211,6 @@ public class Session {
     }
 
 
-
     private static void handleWithdraw(String [] tokens, BankSystem bank) {
 
         // Validate tokens. Tokens must be <cmd> <username> <amount>
@@ -244,11 +239,8 @@ public class Session {
             // Valid command sent in.
             Integer acctNum = Integer.parseInt(tokens[2]);
 
-            ThreadedWithdraw thread = new ThreadedWithdraw(bank, username, acctNum, amount);
-            thread.start();
-            Utility.print("After start in withdraw");
-//            bank.withdraw(username, acctNum, amount);
-//            Utility.displayMessage("SUCCESS", amount + " has been withdrawn from " + username + "'s account.");
+            bank.withdraw(username, acctNum, amount);
+            Utility.displayMessage("SUCCESS", amount + " has been withdrawn from " + username + "'s account.");
 
 
         } catch (NumberFormatException e) {
@@ -302,8 +294,6 @@ public class Session {
 
         } catch (NumberFormatException e) {
             Utility.displayMessage("ERROR", "Account number or amount to be withdrawn must be a non-negative number greater than 0");
-        } catch (InsufficientFundsException e) {
-            Utility.displayMessage("ERROR", e.getMessage());
         } catch (Exception e) {
             Utility.displayMessage("ERROR", e.getMessage());
         }
@@ -332,7 +322,6 @@ public class Session {
         help += "-----------------------------------------------------------------------------\n";
 
         Utility.print(help);
-
     }
 
 }
