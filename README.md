@@ -142,13 +142,6 @@ Enter command [Type in 'DONE' to terminate the program. Type in 'HELP' for comma
 |	139219          			|	110.0           |
 -----------------------------------------------------
 
-Enter command [Type in 'DONE' to terminate the program. Type in 'HELP' for commands] : display-account Hodor
-
------------------------------------------------------
-|	ACCOUNT NUMBER              |	BALANCE         |
------------------------------------------------------
-|	297119          			|	360.0           |
------------------------------------------------------
 ```
 
 ## Some error cases
