@@ -7,6 +7,7 @@ public class Factory {
     private static Factory instance = null;
     private static Random rand;
     private final int UUID_LENGTH = 10;
+    private final int ACCOUNT_NUM_LENGTH = 6;
 
     private Factory() {
         rand = new Random();
@@ -25,7 +26,7 @@ public class Factory {
         String pool = "123456789";
         String acctNum = "";
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < instance.ACCOUNT_NUM_LENGTH; i++) {
             int index = rand.nextInt(pool.length());
             acctNum += pool.charAt(index);
         }
